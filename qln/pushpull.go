@@ -198,7 +198,7 @@ func (nd LitNode) PushChannel(qc *Qchan, amt uint32, data [32]byte) error {
 		qc.ClearToSend <- true
 		return fmt.Errorf("want to push %s but %s available after %s fee and %s minOutput",
 			lnutil.SatoshiColor(int64(amt)),
-			lnutil.SatoshiColor(qc.State.MyAmt - qc.State.Fee - minOutput),
+			lnutil.SatoshiColor(qc.State.MyAmt-qc.State.Fee-minOutput),
 			lnutil.SatoshiColor(qc.State.Fee),
 			lnutil.SatoshiColor(minOutput))
 	}
@@ -311,7 +311,7 @@ func (nd *LitNode) DeltaSigHandler(msg lnutil.DeltaSigMsg, qc *Qchan) error {
 	}
 
 	if collision {
-		// incoming delta saved as collision value,
+		// incoming delta saved 
 		// existing (negative) delta value retained.
 		qc.State.Collision = int32(incomingDelta)
 		fmt.Printf("delta sig COLLISION (%d)\n", qc.State.Collision)

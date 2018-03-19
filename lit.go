@@ -17,6 +17,7 @@ import (
 type config struct { // define a struct for usage with go-flags
 	Tn3host     string `long:"tn3" description:"Connect to bitcoin testnet3."`
 	Bc2host     string `long:"bc2" description:"bc2 full node."`
+	Mn4host     string `long:"mn4" description:"Connect to monacoin testnet4."`
 	Lt4host     string `long:"lt4" description:"Connect to litecoin testnet4."`
 	Reghost     string `long:"reg" description:"Connect to bitcoin regtest."`
 	Litereghost string `long:"litereg" description:"Connect to litecoin regtest."`
@@ -90,6 +91,17 @@ func linkWallets(node *qln.LitNode, key *[32]byte, conf *config) error {
 	if !lnutil.NopeString(conf.Litereghost) {
 		p := &coinparam.LiteRegNetParams
 		err = node.LinkBaseWallet(key, 120, conf.ReSync, conf.Tower, conf.Litereghost, p)
+		if err != nil {
+			return err
+		}
+	}
+
+	// try monacoin testnet4
+	if !lnutil.NopeString(conf.Mn4host) {
+		p := &coinparam.MonaCoinTestNet4Params
+		err = node.LinkBaseWallet(
+			key, p.StartHeight, conf.ReSync, conf.Tower,
+			conf.Mn4host, p)
 		if err != nil {
 			return err
 		}

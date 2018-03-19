@@ -167,6 +167,7 @@ var (
 	bc2NetPowLimit = new(big.Int).Sub(new(big.Int).Lsh(bigOne, 231), bigOne)
 
 	liteCoinTestNet4PowLimit = new(big.Int).Sub(new(big.Int).Lsh(bigOne, 236), bigOne)
+	monaCoinTestNet4PowLimit = new(big.Int).Sub(new(big.Int).Lsh(bigOne, 236), bigOne)
 
 	// simNetPowLimit is the highest proof of work value a Bitcoin block
 	// can have for the simulation test network.  It is the value 2^255 - 1.
@@ -191,6 +192,7 @@ func init() {
 	mustRegister(&TestNet3Params)
 	mustRegister(&RegressionNetParams)
 	mustRegister(&BC2NetParams)
+	mustRegister(&MonaCoinTestNet4Params)
 	mustRegister(&LiteCoinTestNet4Params)
 	mustRegister(&LiteRegNetParams)
 	mustRegister(&VertcoinTestNetParams)

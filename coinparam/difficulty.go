@@ -53,7 +53,7 @@ func calcDiffAdjustBitcoin(start, end *wire.BlockHeader, p *Params) uint32 {
 func diffBitcoin(
 	headers []*wire.BlockHeader, height int32, p *Params) (uint32, error) {
 
-	ltcmode := p.Name == "litetest4" || p.Name == "litereg" ||
+	ltcmode := p.Name == "litetest4" || p.Name == "litereg" || p.Name == "monatest4" ||
 		p.Name == "litecoin" || p.Name == "vtctest" || p.Name == "vtc"
 
 	if p.Name == "regtest" {

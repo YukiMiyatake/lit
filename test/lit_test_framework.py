@@ -57,6 +57,9 @@ class LitTest():
             if subprocess.check_output(["pidof", "litecoind"]) is not None:
                 print("ERROR! There is already a litecoind process running on this system. Tests may fail unexpectedly due to resource contention!")
                 sys.exit(1)
+            if subprocess.check_output(["pidof", "monacoind"]) is not None:
+                print("ERROR! There is already a monacoind process running on this system. Tests may fail unexpectedly due to resource contention!")
+                sys.exit(1)
         except (OSError, subprocess.SubprocessError):
             pass
         self.litnodes = []
